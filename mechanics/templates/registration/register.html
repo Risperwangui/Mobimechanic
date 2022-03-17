@@ -1,0 +1,33 @@
+{% extends "base.html"%}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container" style="margin-left: 35%;"><br>
+    <div class="row">
+        <div class="col-md-4">
+            <h2 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;color: rgb(243, 172, 41);text-align: center;">Mobimechanic</h3>
+            {% if form.errors %}
+            <p> Some Information Might be Incorrect </p>
+            {% endif %}
+            <div class="panel-default">
+                <div class="panel-heading">
+                    <h3 class="text-center"><b>Sign Up</b></h3>
+                    <p class="text-muted">Already have an account?<a class="ml-2 text-info" href="{% url 'login' %}"><b>SignIn</b></a></p>
+                </div>
+                <div class="panel-body">
+                    <form action="" novalidate method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success btn-lg" value="SignUp">
+                        </div>
+                        <input type="hidden" name="newprofile" value="newprofile">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+{% endblock %}
