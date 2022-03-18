@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+    <h3 style="text-align: center;"> Available mechanics for wheel alignment! </h3><br>
+    <div class="row">
+        {% if mechanics %}
+            {% for mechanic in mechanics %}
+            {% if mechanic.service == "wheelAlignment" %}
+            <div class="col-md-5">
+                <img class="rounded-circle d-block mx-auto" style="margin-top: 3%;height: 125px;width: 125px;"
+                    src="{{ mechanic.user.userprofile.profile_picture.url }}">
+            </div>
+            <div class="card col-md-5" style="background-color:transparent;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin-bottom: 3%;">
+                <p class="text-center mt-3" style="font-size: 20px;">{{mechanic.user.username}}</p>
+                <p>Email: {{mechanic.user.email}}</p>
+                <p>Contact: {{mechanic.user.phone_number}}</p>
+                <a href="{% url 'work-info' mechanic.user.id %}" class="btn btn-sm btn-warning" style="width: 130px;margin-bottom: 2%;">View more details</a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div><br>
+</div>
+{% endblock %}

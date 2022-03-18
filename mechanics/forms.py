@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User,Mechanic,Client
+from .models import *
 from django.db import transaction
 
 class ClientSignUpForm(UserCreationForm):
@@ -21,3 +21,23 @@ class ClientSignUpForm(UserCreationForm):
         client= Client.objects.create(user=user)
         client.save()
         return user
+
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'phone_number']
+
+class EditUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['profile_picture', 'location_address']
+
+class EditMechanicForm(forms.ModelForm):
+    class Meta:
+        model = Mechanic
+        fields = ['service']
+
+class WorkForm(forms.ModelForm):
+    class Meta:
+        model = WorkDone
+        fields = ['image_of_work', 'client_name', 'client_contact']

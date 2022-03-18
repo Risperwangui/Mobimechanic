@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+{% block content %}
+<div class="container">
+    <div class="text-center" style="font-size: 30px;">Jobs done <a href="{% url 'contact_mechanic' %}" class="btn btn-sm btn-warning">Contact Mechanic</a></div><br>
+    <div class="row">
+        {% if works %}
+        {% for work in works %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img class="card-img" src="{{ work.image_of_work.url }}" alt="" style="height: 300px;">
+                    <div class="card-body" style="height: 130px;">
+                        <p><strong>Client Name: </strong>{{work.client_name}}</p>
+                        <p><strong>Client Contact: </strong>{{work.client_contact}}</p>
+                        <p><strong>Date added: </strong>{{work.added|date}}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-md-12 mb-12 text-center">
+            <h5 class="text-center">Mechanic has <strong style="color: red;">no </strong>uploaded work</h5><br>
+            <a class="d-block mx-auto" href="/"><button class="btn btn-sm btn-warning d-block mx-auto">Back Home</button></a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

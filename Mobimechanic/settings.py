@@ -145,6 +145,8 @@ STATICFILES_DIRS = (
 
 AUTH_USER_MODEL = 'mechanics.User'
 
+LOGIN_REDIRECT_URL = 'home'
+
 MEDIA_ROOT = os.path.join(BASE_DIR,)
 MEDIA_URL = '/media/'
 
